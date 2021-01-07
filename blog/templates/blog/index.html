@@ -1,0 +1,10 @@
+{% extends "blog/layout.html" %}
+{% block body %}
+<h1>My Blogs</h1>
+<h2>Chetan has written {{ blogs.count }} blog{{ blogs.count|pluralize }}</h2>
+    {% for blog in blogs %}
+        <a href="{% url 'Blog:detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+        <footer class="blockquote-footer"> {{ blog.date }} </footer>
+        <p class="text-justify"> {{ blog.description|striptags|truncatechars:200 }}</p>
+    {% endfor %}
+{% endblock %}
